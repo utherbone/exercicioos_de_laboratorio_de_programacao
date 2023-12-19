@@ -1,0 +1,19 @@
+Então no bloco principal eu declaro um vetor usando ponteiro.
+
+	int *p;
+
+	p = malloc(10 * sizeof(int));
+
+depois chamo uma função duplicar para realocar o vetor.
+
+	duplicar(p, t);
+
+Na função duplicar realoco e duplico os valores de 0 a 9 para 10 a 19
+
+	p = realloc(p, 20 * sizeof(int));
+
+depois na função imprimir so imprime corretamente até 9 depois
+endereços aleatórios ou sequencial a memoria, não sei o que está
+acontecendo, ai ainda hoje a noite tive a ideia de retornar esse
+endereço do vetor realocado devolta para p em bloco principal main()
+Arquivo original sem o retorno ponteiro.c e arquivo com retorno ponteiro_v2.c
