@@ -1,0 +1,9 @@
+O programa começa com uma animação que eu mesmo fiz usando caracteres e a biblioteca
+time.h
+
+No codigo tem algumas inserções que eu comentei para testar rapidamente o app
+na parte de exclusao faria um alunoo excluido receber o proximo aluno assim 
+por indiante ate que o ultimo aluno tenha assumido a posicao do penultimo aluno
+e o ultimo agora recebe 0 em cada campo e um marcador ponteiro e atualizado 
+da posicao final da lista de alunos.
+
