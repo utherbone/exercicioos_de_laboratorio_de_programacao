@@ -10,9 +10,9 @@ libere_ptr libere = free;
 aloque_ptr aloque = malloc;
 realoque_ptr realoque = realloc;
 
-void inserir_na_fila();
-void remover_da_fila();
-void imprimir_fila();
+void empilhar();
+void desempilhar();
+void imprimir_pilha();
 void sair();
 
 
@@ -28,7 +28,7 @@ int main (){
     position = &x;
     p = NULL;
 
-    printf("Digite um tamanho maximo para fila: ");
+    printf("Digite um tamanho maximo para Pilha: ");
 
     fflush(stdin);
     fgets(buffer2, sizeof(buffer2), stdin);
@@ -40,9 +40,9 @@ int main (){
     p = aloque(n * sizeof(int));
 
     do {
-        printf("\33[H\33[2J");
-        printf("\nDigite a opcao: \ni -> Inserir na fila;\nd -> Remover da fila;\np -> "
-        "Imprimir fila;\ns -> Sair \n");
+   
+        printf("\nDigite a opcao: \ni -> Inserir na pilha;\nd -> Remover da pilha;\np -> "
+        "Imprimir pilha;\ns -> Sair \n");
         
         fflush(stdin);
         fgets(buffer, sizeof(buffer), stdin);
@@ -51,13 +51,13 @@ int main (){
         sscanf(buffer, "%c", &escolha);
 
         switch(escolha){
-            case 'i': inserir_na_fila(p, position, nn);
+            case 'i': empilhar(p, position, nn);
             break ;
 
-            case 'd': remover_da_fila(p, position);
+            case 'd': desempilhar(p, position);
             break;
 
-            case 'p': imprimir_fila(p, position);
+            case 'p': imprimir_pilha(p, position);
             break;
 
             case 's': sair(p);
@@ -72,11 +72,11 @@ int main (){
 }
 
 
-void inserir_na_fila(int *p, int *position, int *nn){
+void empilhar(int *p, int *position, int *nn){
     char buffer[10] = {};
     if (*position < *nn){
         printf("\33[H\33[2J");
-        printf("Digite o um valor para enfileirar: ");
+        printf("Digite o um valor para empilhar: ");
 
         
         fgets(buffer, sizeof(buffer), stdin);
@@ -87,52 +87,38 @@ void inserir_na_fila(int *p, int *position, int *nn){
     }
     else {
         printf("\33[H\33[2J");
-        printf("Fila atingiu o limite maximo!");
+        printf("Pilha atingiu o limite maximo!");
     }
 }
 
 
-void remover_da_fila(int *p, int *position){
-    int k, h;
+void desempilhar(int *p, int *position){
+
     if (*position == 0){
         printf("\33[H\33[2J");
-        printf("Fila nao possui mais intens para remover!\n");
+        printf("Pilha nao possui mais intens para remover!\n");
     }
     else {
-        if (*position % 2 == 0){
-            for (h=0; h < *position; h++){
-                *(p+h) = *(p+(h+1));
-                *(p+(h+1) = 0;
-            }
-        }
-
-        if (*position % 2 == 1){
-            for (k=0; k < *position; k++){
-                *(p+k) = *(p+(k+1));
-                *(p+(k+1)) = 0;
-                if(k == (*position) - 1){
-                    k+=1;
-                }
-            }
-            
-        }
+        
+        *(p+(*position - 1)) = 0;
         *position -= 1;
+
         printf("\33[H\33[2J");
-        printf("Primeiro da fila removido com sucesso!\n");
+        printf("Ultimo da pilha removido com sucesso!\n");
     }
 }
 
-void imprimir_fila(int *p, int *position){
+void imprimir_pilha(int *p, int *position){
     printf("\33[H\33[2J");
     int k;
     if (*position > 0){
-        for (k=0; k < *position; k++){
-            printf("\nPosicao da fila: [%d] item da fila: [%d]", k, *(p+(k)));
+        for (k=(*position - 1); k > -1; k--){
+            printf("\nPosicao da Piha: [%d] item da fila: [%d]", k, *(p+(k)));
             printf("\n----------------------------------\n");
         }
     }else {
         printf("\33[H\33[2J");
-        printf("Fila esta vasia!\n");
+        printf("Pilha esta vasia!\n");
     }
 }
 
